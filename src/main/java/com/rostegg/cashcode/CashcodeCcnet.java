@@ -27,8 +27,7 @@ public class CashcodeCcnet {
 
     private SerialPort serialPort;
 
-    public CashcodeCcnet(String portName)
-    {
+    public CashcodeCcnet(String portName) {
         serialPort = new SerialPort(portName);
     }
 
@@ -74,25 +73,21 @@ public class CashcodeCcnet {
             sendPoll();
     }
 
-    public void stopPolling()
-    {
+    public void stopPolling() {
         isLoop = false;
     }
 
 
     public void sendNsc() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0xFF,new int[]{}));
-
     }
 
     public void sendAsc() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0x00,new int[]{}));
-
     }
 
     public void sendStack() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0x35,new int[]{}));
-
     }
 
     public void sendReset() throws SerialPortException, InterruptedException {
@@ -117,7 +112,6 @@ public class CashcodeCcnet {
 
     public void sendReturn() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0x36,new int[]{}));
-
     }
 
     public void sendPoll() throws SerialPortException, InterruptedException {
