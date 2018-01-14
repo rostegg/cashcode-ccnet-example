@@ -129,11 +129,7 @@ public class CashcodeCcnet {
         pause();
     }
 
-
-
-
-    private int[] formPacket(int command, int[]data)
-    {
+    private int[] formPacket(int command, int[]data) {
         int length = data.length + 6;
         int [] commandArr = new int[256];
         commandArr[0] = 0x02;   //sync
@@ -153,15 +149,13 @@ public class CashcodeCcnet {
         }
         int []crcPacket =  Arrays.copyOfRange(commandArr, 0, length-2);
         int crcValue = getCrc16(crcPacket);
-        String hex = Integer.toHexString(crcValue);
-        commandArr[length-1]=Integer.parseInt(hex.substring(0,2),16);
-        commandArr[length-2]=Integer.parseInt(hex.substring(2,4),16);
+        commandArr[length-1]=(crcValue >> 8 ) & 0xFF;
+        commandArr[length-2]=crcValue  & 0xFF;
         int []res = Arrays.copyOfRange(commandArr, 0, length);
         return  res;
     }
 
-    private int getCrc16(int []arr)
-    {
+    private int getCrc16(int []arr) {
         int i, tmpCrc=0;
         byte j;
         for(i = 0; i <= arr.length-1; i++)
