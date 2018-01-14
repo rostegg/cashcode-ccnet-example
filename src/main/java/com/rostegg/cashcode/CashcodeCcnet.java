@@ -178,10 +178,6 @@ public class CashcodeCcnet {
     }
 
     private class PortReader implements SerialPortEventListener {
-        private int[] parseAnswer(int[] input)
-        {
-            return  input;
-        }
         public void serialEvent(SerialPortEvent event) {
             if(event.isRXCHAR() && event.getEventValue() > 0) {
                 int [] receivedData = new int[0];
