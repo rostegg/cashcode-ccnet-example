@@ -77,7 +77,6 @@ public class CashcodeCcnet {
         isLoop = false;
     }
 
-
     public void sendNsc() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0xFF,new int[]{}));
     }
@@ -131,11 +130,9 @@ public class CashcodeCcnet {
         commandArr[2] = length; //length
         commandArr[3] = command; //command
 
-        if (data.length != 0)
-        {
+        if (data.length != 0) {
             int i = 4, d=0;
-            while (d != data.length)
-            {
+            while (d != data.length) {
                 commandArr[i] = data[d];
                 i+=1;
                 d+=1;
@@ -152,18 +149,13 @@ public class CashcodeCcnet {
     private int getCrc16(int []arr) {
         int i, tmpCrc=0;
         byte j;
-        for(i = 0; i <= arr.length-1; i++)
-        {
+        for(i = 0; i <= arr.length-1; i++) {
             tmpCrc^=arr[i];
-            for (j=0; j <= 7;j++)
-            {
-                if ((tmpCrc & 0x0001) != 0)
-                {
+            for (j=0; j <= 7;j++) {
+                if ((tmpCrc & 0x0001) != 0) {
                     tmpCrc>>=1;
                     tmpCrc^=POLYNOMIAL;
-                }
-                else
-                {
+                } else {
                     tmpCrc>>=1;
                 }
             }
