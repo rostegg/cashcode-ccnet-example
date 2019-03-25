@@ -8,16 +8,19 @@ import jssc.SerialPortException;
 import java.util.Arrays;
 
 public class CashcodeCcnet {
-    //0x37,[] -> identificator 3 array response
-    //0x30,[] -> reset 1 array response
-    // 0x35,[] -> stack 1 array
-    // 0xFF, [] -> sendNSC  -
-    // 0x00, [] -> sendASC  -
-    // 0x31, [] -> getStatus
-    // 0x32,[0,0,BillTypesByte] -> setSecurity, BillTypesByte - номинал
-    // 0x34,[0,0,BillTypesByte,0,0,0] -> enableBillTypes, BillTypesByte - номинал
-    // 0x36, [] -> return
-    // 0x33, [] -> poll, loop опрос на основе poll
+    /*
+        code,data -> command | response
+        0x37,[] -> identificator | 3 arrays
+        0x30,[] -> reset | array
+        0x35,[] -> stack | array
+        0xFF, [] -> sendNSC | -
+        0x00, [] -> sendASC | -
+        0x31, [] -> getStatus | array
+        0x32,[0,0,BillTypesByte] -> setSecurity, BillTypesByte - denomination of bills | -
+        0x34,[0,0,BillTypesByte,0,0,0] -> enableBillTypes, BillTypesByte - denomination of bills | -
+        0x36, [] -> return | -
+        0x33, [] -> poll | -
+    */
 
 
     private final int POLYNOMIAL = 0x08408;
@@ -93,7 +96,7 @@ public class CashcodeCcnet {
         sendPacket(formPacket(0x30,new int[]{}));
     }
 
-    // 3 array return
+    // 3 arrays return
     public void sendIdent() throws SerialPortException, InterruptedException {
         sendPacket(formPacket(0x37,new int[]{}));
     }
