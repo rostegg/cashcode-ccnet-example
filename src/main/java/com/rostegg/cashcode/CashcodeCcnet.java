@@ -109,7 +109,7 @@ public class CashcodeCcnet {
     }
 
     public void sendEnableBillTypes(int value) throws SerialPortException, InterruptedException {
-        sendPacket(formPacket(0x34,new int[]{0,0,0x7C,0,0,0}));
+        sendPacket(formPacket(0x34,new int[]{0,0,value,0,0,0}));
     }
 
     public void sendReturn() throws SerialPortException, InterruptedException {
